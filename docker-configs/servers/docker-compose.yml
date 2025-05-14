@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: bootdev-nginx
+    ports:
+      - "8081:80"
+    volumes:
+      - ./nginx/html:/usr/share/nginx/html
+      - ./nginx/conf:/etc/nginx/conf.d
+    restart: unless-stopped
+    networks:
+      - bootdev-net
+
+  node-server:
+    build:
+      context: ./node-server
+      dockerfile: Dockerfile
+    container_name: bootdev-node
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./node-server:/app
+      - /app/node_modules
+    restart: unless-stopped
+    networks:
+      - bootdev-net
+
+networks:
+  bootdev-net:
+    driver: bridge
