@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: bootdev-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: bootuser
+      POSTGRES_PASSWORD: bootpassword
+      POSTGRES_DB: bootdb
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:8
+    container_name: bootdev-mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: bootuser
+      MYSQL_PASSWORD: bootpassword
+      MYSQL_DATABASE: bootdb
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
+  mysql-data:
