@@ -1,23 +1,21 @@
 from main import *
 
 run_cases = [
-    (100, 5, 2, 20, 65),
-    (200, 10, 1, 25, 185),
+    (100, 20, "Speedster", (120, "Achievement Unlocked: Speedster")),
+    (200, 50, "Killer", (250, "Achievement Unlocked: Killer")),
 ]
 
 submit_cases = run_cases + [
-    (0, 0, 0, 0, 0),
-    (1, 1, 1, 1, 1),
-    (100, 2, 3, 1, 99),
-    (2500, 3, 2, 2, 2499),
+    (100, 50, "Unstoppable", (150, "Achievement Unlocked: Unstoppable")),
+    (400, 75, "Gnarly", (475, "Achievement Unlocked: Gnarly")),
 ]
 
 
-def test(input1, input2, input3, input4, expected_output):
+def test(input1, input2, input3, expected_output):
     print("---------------------------------")
-    print(f"Inputs: {input1}, {input2}, {input3}, {input4}")
+    print(f"Inputs: {input1}, {input2}, {input3}")
     print(f"Expecting: {expected_output}")
-    result = take_magic_damage(input1, input2, input3, input4)
+    result = unlock_achievement(input1, input2, input3)
     print(f"Actual: {result}")
     if result == expected_output:
         print("Pass")
